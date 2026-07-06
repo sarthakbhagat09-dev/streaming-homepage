@@ -43,8 +43,19 @@ function FooterLink({ text }) {
 function Home() {
   return (
     <div>
-      <Link className="login-button" to="/signin">LOG IN</Link>
-      <h1 className="plan-heading">Choose Your Plan</h1>
+      <div className="top-bar">
+        <Link className="login-button" to="/signin">LOG IN</Link>
+      </div>
+
+      <div className="hero">
+        <h1 className="hero-headline">
+          Get your favorite stories, originals and live sports with Disney+, Hulu, and ESPN+
+        </h1>
+        <button className="hero-button">GET ALL THREE</button>
+        <p className="hero-terms">Terms Apply.</p>
+      </div>
+
+      <h2 className="plan-heading">Choose Your Plan</h2>
 
       <div className="pricing-row">
         <PricingCard name="Trio Premium No Ads on Disney+ & Hulu" price="$19.99/month" />
