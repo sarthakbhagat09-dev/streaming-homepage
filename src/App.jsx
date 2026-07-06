@@ -26,10 +26,10 @@ function FaqItem({ question, answer }) {
   )
 }
 
-function DeviceCard({ title, description }) {
+function DeviceCard({ title, description, imageSeed }) {
   return (
     <div className="device-card">
-      <div className="device-image-placeholder"></div>
+      <img className="device-image" src={`https://picsum.photos/seed/${imageSeed}/300/150`} alt={title} />
       <p className="device-title">{title}</p>
       <p className="device-description">{description}</p>
     </div>
@@ -38,6 +38,38 @@ function DeviceCard({ title, description }) {
 
 function FooterLink({ text }) {
   return <a className="footer-link" href="#">{text}</a>
+}
+
+function MovieSection() {
+  const [activeTab, setActiveTab] = useState('TRENDING')
+  const tabs = ['COMING SOON', 'NEW ON DISNEY+', 'TRENDING']
+
+  return (
+    <div className="movie-section">
+      <div className="movie-tabs">
+        {tabs.map((tab) => (
+          <button
+            key={tab}
+            className={tab === activeTab ? 'movie-tab movie-tab-active' : 'movie-tab'}
+            onClick={() => setActiveTab(tab)}
+          >
+            {tab}
+          </button>
+        ))}
+      </div>
+      <p className="movie-tab-note">Showing: {activeTab}</p>
+      <div className="movie-grid">
+        {['movie1', 'movie2', 'movie3', 'movie4', 'movie5', 'movie6'].map((seed) => (
+          <img
+            key={seed}
+            className="movie-poster"
+            src={`https://picsum.photos/seed/${seed}/400/250`}
+            alt="Movie poster"
+          />
+        ))}
+      </div>
+    </div>
+  )
 }
 
 function Home() {
@@ -77,11 +109,13 @@ function Home() {
       <h2 className="device-heading">Available on your favorite devices</h2>
 
       <div className="device-row">
-        <DeviceCard title="Game Consoles" description="PS4 PS5 Xbox One Xbox Series X Xbox Series S" />
-        <DeviceCard title="Mobile & Tablet" description="Amazon Fire Tablets Android Phones & Tablets iPhone and iPad" />
-        <DeviceCard title="Computer" description="Chrome OS MacOS Windows PC" />
-        <DeviceCard title="TV" description="Amazon Fire TV Android TV devices AppleTV Chromecast LG TV Roku Samsung" />
+        <DeviceCard title="Game Consoles" description="PS4 PS5 Xbox One Xbox Series X Xbox Series S" imageSeed="consoles" />
+        <DeviceCard title="Mobile & Tablet" description="Amazon Fire Tablets Android Phones & Tablets iPhone and iPad" imageSeed="mobile" />
+        <DeviceCard title="Computer" description="Chrome OS MacOS Windows PC" imageSeed="computer" />
+        <DeviceCard title="TV" description="Amazon Fire TV Android TV devices AppleTV Chromecast LG TV Roku Samsung" imageSeed="tv" />
       </div>
+
+      <MovieSection />
 
       <footer className="site-footer">
         <div className="footer-links">
